@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión | DrokHost</title>
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="login-body">
+  <div class="login-top" id="loginTop"></div>
+  <main class="login">
+    <div class="login-box">
+      <img class="login-logo" src="assets/img/logo.webp" alt="DrokHost">
+      <form class="card" id="loginForm" autocomplete="off">
+        <h2>Iniciar sesión</h2>
+        <p class="s">Accede a tu panel de clientes de DrokHost.</p>
+        <div class="field">
+          <label for="user">Usuario o correo</label>
+          <input class="input" id="user" value="lenin@drokhost.com" required>
+        </div>
+        <div class="field">
+          <label for="pass">Contraseña</label>
+          <input class="input" id="pass" type="password" value="demo1234" required>
+        </div>
+        <button class="btn gold" type="submit">Iniciar sesión</button>
+        <div class="links"><a href="#" id="forgot">¿Olvidaste tu contraseña?</a><a href="https://discord.gg/6SJ6KHDfQ" target="_blank" rel="noopener">Soporte</a></div>
+        <p class="demo-note">Demo visual: cualquier usuario y contraseña te deja entrar.</p>
+      </form>
+    </div>
+  </main>
+  <footer class="footer" id="footer"></footer>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.getElementById('loginTop').innerHTML = DH.discordPill();
+    DH.renderFooter();
+    document.getElementById('forgot').addEventListener('click', function (e) { e.preventDefault(); DH.toast('Demo: recuperación de contraseña no disponible.'); });
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      try { sessionStorage.setItem('dh_demo_auth', '1'); } catch (err) {}
+      location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>
