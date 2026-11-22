@@ -12,33 +12,44 @@
   <main class="login">
     <div class="login-box">
       <img class="login-logo" src="assets/img/logo.webp" alt="DrokHost">
-      <form class="card" id="loginForm" autocomplete="off">
+      <form class="card" id="loginForm" autocomplete="on" novalidate>
         <h2>Iniciar sesión</h2>
         <p class="s">Accede a tu panel de clientes de DrokHost.</p>
+        <div class="err" id="err"></div>
         <div class="field">
-          <label for="user">Usuario o correo</label>
-          <input class="input" id="user" value="lenin@drokhost.com" required>
+          <label for="user">Usuario</label>
+          <input class="input" id="user" autocomplete="username" required>
         </div>
         <div class="field">
           <label for="pass">Contraseña</label>
-          <input class="input" id="pass" type="password" value="demo1234" required>
+          <input class="input" id="pass" type="password" autocomplete="current-password" required>
         </div>
         <button class="btn gold" type="submit">Iniciar sesión</button>
         <div class="links"><a href="#" id="forgot">¿Olvidaste tu contraseña?</a><a href="https://discord.gg/6SJ6KHDfQ" target="_blank" rel="noopener">Soporte</a></div>
-        <p class="demo-note">Demo visual: cualquier usuario y contraseña te deja entrar.</p>
+        <p class="demo-note" id="hint"></p>
       </form>
     </div>
   </main>
   <footer class="footer" id="footer"></footer>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/store.js"></script>
   <script>
+    if (DB.isAuth()) location.replace('dashboard.html');
     document.getElementById('loginTop').innerHTML = DH.discordPill();
     DH.renderFooter();
-    document.getElementById('forgot').addEventListener('click', function (e) { e.preventDefault(); DH.toast('Demo: recuperación de contraseña no disponible.'); });
+    if (!DB.data.admin.changed) document.getElementById('hint').textContent = 'Acceso inicial: admin / drokhost (cámbialo en Mi cuenta).';
+    document.getElementById('user').focus();
+    document.getElementById('forgot').addEventListener('click', function (e) {
+      e.preventDefault();
+      DH.modal({ title: 'Recuperar acceso', submit: false,
+        body: '<p>Este panel guarda los datos en este navegador. Si olvidaste la contraseña, puedes restablecer el panel a sus valores de fábrica (se borran servidores y archivos guardados aquí).</p><button type="button" class="btn red" id="rst">Restablecer panel</button>' });
+      document.getElementById('rst').onclick = function () { DB.resetAll(); location.reload(); };
+    });
     document.getElementById('loginForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      try { sessionStorage.setItem('dh_demo_auth', '1'); } catch (err) {}
-      location.href = 'dashboard.html';
+      var u = document.getElementById('user').value, p = document.getElementById('pass').value;
+      if (DB.login(u, p)) location.href = 'dashboard.html';
+      else { document.getElementById('err').textContent = 'Usuario o contraseña incorrectos.'; document.getElementById('pass').value = ''; }
     });
   </script>
 </body>
