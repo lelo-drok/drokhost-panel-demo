@@ -137,8 +137,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke
 .login-box{width:100%;max-width:420px}
 .login-logo{display:block;width:100%;max-width:340px;margin:0 auto 22px;border-radius:14px;filter:drop-shadow(0 0 24px #22d3ee33)}
 .login .card{padding:28px}
-.login h2{font-size:18px;margin-bottom:4px}
-.login p.s{color:var(--muted);margin-bottom:20px;font-size:13px}
+.login h2{font-size:18px;margin-bottom:4px}.login p.s{color:var(--muted);margin-bottom:20px;font-size:13px}
 .login .btn{width:100%;justify-content:center;padding:12px}
 .login .links{display:flex;justify-content:space-between;margin-top:14px;font-size:13px}
 .demo-note{margin-top:14px;text-align:center;color:var(--muted);font-size:12px}
@@ -150,3 +149,23 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke
 @media(max-width:700px){.sidebar{width:60px}.main{margin-left:60px}.nav-btn{width:40px;height:40px}.sidebar .brand{width:40px;height:40px}
   .content,.topbar,.footer{padding-left:16px;padding-right:16px}.two{grid-template-columns:1fr}.stats{grid-template-columns:1fr}
   .pill-discord span{display:none}.table th:nth-child(n+3),.table td:nth-child(n+3){display:none}}
+
+
+/* ---------- Modales y extras (versión funcional) ---------- */
+.modal-bg{position:fixed;inset:0;background:#02040acc;backdrop-filter:blur(3px);display:grid;place-items:center;z-index:60;padding:16px}
+.modal{width:100%;max-width:480px;max-height:90vh;overflow:auto;box-shadow:0 20px 60px #000a}
+.modal.wide{max-width:920px}
+.modal .mf{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+.modal p{color:var(--muted);margin-bottom:12px}
+select.input{appearance:auto}
+.editor{width:100%;min-height:55vh;resize:vertical;background:#05070d;color:#d6def0;border:1px solid var(--line);border-radius:10px;padding:12px;font:13px/1.55 "JetBrains Mono",Consolas,monospace;outline:0;tab-size:4}
+.acts{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+.ib{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:#16213a;color:var(--muted);display:grid;place-items:center}
+.ib:hover{color:var(--text);border-color:#2b3d63}.ib.del:hover{color:var(--red);border-color:#ef444466}
+.ib svg.i{width:16px;height:16px}
+.clickable{cursor:pointer}.clickable:hover{color:var(--gold)}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:6px}.checks label{display:flex;gap:8px;align-items:center;color:var(--text);text-transform:none;letter-spacing:0;font-weight:400;font-size:13px}
+.crumb a{color:var(--muted)}.crumb a:hover{color:var(--gold)}
+.err{color:#f87171;font-size:13px;margin-bottom:10px;min-height:1px}
+.toolbar .btns{display:flex;gap:8px;flex-wrap:wrap}
+.hint{color:var(--muted);font-size:12.5px}
